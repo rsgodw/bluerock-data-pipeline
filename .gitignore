@@ -5,3 +5,7 @@ target/
 dbt_packages/
 logs/
 .snowflake/
+.user.yml
+analytics/target/
+analytics/dbt_packages/
+analytics/logs/

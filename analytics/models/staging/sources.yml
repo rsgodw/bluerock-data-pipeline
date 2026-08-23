@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: raw
+    database: CREDIT_UNION_DB
+    schema: RAW
+    tables:
+      - name: members
+        description: "Raw members table containing member PII and join dates."
+      - name: accounts
+        description: "Raw accounts table containing financial account information."
+      - name: transactions
+        description: "Raw transactions table containing monetary deposits and withdrawals."

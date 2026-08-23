@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: dim_members
+    description: "Dimension table for credit union members."
+    columns:
+      - name: member_sk
+        description: "Surrogate key for members."
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_accounts
+    description: "Dimension table for financial accounts."
+    columns:
+      - name: account_sk
+        description: "Surrogate key for accounts."
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_transactions
+    description: "Fact table for credit union transactions."
+    columns:
+      - name: transaction_sk
+        description: "Surrogate key for transactions."
+        tests:
+          - unique
+          - not_null
