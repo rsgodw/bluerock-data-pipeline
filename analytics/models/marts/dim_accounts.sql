@@ -5,7 +5,7 @@ with accounts as (
 select
     {{ dbt_utils.generate_surrogate_key(['account_id']) }} as account_sk,
     account_id,
-    member_id,
+    {{ dbt_utils.generate_surrogate_key(['member_id']) }} as member_sk,
     account_type,
     balance
 from accounts

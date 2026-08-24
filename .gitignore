@@ -9,3 +9,5 @@ logs/
 analytics/target/
 analytics/dbt_packages/
 analytics/logs/
+.tmp_dagster_home*/
+.dagster/
