@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "redstone_dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "cde5902f-5dec-43ae-bc2c-96f7e5398dda"
+  }
+}

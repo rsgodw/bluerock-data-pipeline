@@ -1,0 +1,83 @@
+table DIM_DATE
+	lineageTag: 4dc16e7c-1d12-4a44-8532-ff515fa7fdae
+
+	column DATE_SK
+		dataType: int64
+		formatString: 0
+		sourceProviderType: decimal(8, 0)
+		lineageTag: 6ae0e82f-01a3-4163-8d08-38f4e747c598
+		summarizeBy: none
+		sourceColumn: DATE_SK
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column FULL_DATE
+		dataType: dateTime
+		isNullable: false
+		formatString: Long Date
+		sourceProviderType: date
+		lineageTag: a36ea145-d96b-44f5-90a7-3ffef1bb60a7
+		summarizeBy: none
+		sourceColumn: FULL_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column YEAR
+		dataType: double
+		sourceProviderType: decimal(4, 0)
+		lineageTag: 0e610154-ed16-46d1-9973-11f877992157
+		summarizeBy: none
+		sourceColumn: YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MONTH
+		dataType: double
+		sourceProviderType: decimal(2, 0)
+		lineageTag: d1f6634a-9f1d-4050-9ea3-c653ba98aa95
+		summarizeBy: none
+		sourceColumn: MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YEAR_MONTH
+		dataType: string
+		sourceProviderType: nvarchar(7)
+		lineageTag: ca66a5b4-97e1-45b3-9ddc-c5be7ca8e09a
+		summarizeBy: none
+		sourceColumn: YEAR_MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+	column DAY_OF_WEEK
+		dataType: string
+		sourceProviderType: nvarchar(3)
+		lineageTag: 3f263486-14cf-4954-9304-8850efb02abc
+		summarizeBy: none
+		sourceColumn: DAY_OF_WEEK
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_DATE = m
+		mode: directQuery
+		source =
+				let
+				    Source = Snowflake.Databases("TJFQSZG-VX46954.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),
+				    CREDIT_UNION_DB_Database = Source{[Name="CREDIT_UNION_DB",Kind="Database"]}[Data],
+				    ANALYTICS_Schema = CREDIT_UNION_DB_Database{[Name="ANALYTICS",Kind="Schema"]}[Data],
+				    DIM_DATE_View = ANALYTICS_Schema{[Name="DIM_DATE",Kind="View"]}[Data]
+				in
+				    DIM_DATE_View
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

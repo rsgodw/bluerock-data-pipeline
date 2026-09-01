@@ -1,0 +1,66 @@
+table DIM_ACCOUNTS
+	lineageTag: 2d4db9a6-7a8e-49af-a0c1-b68739327840
+
+	column ACCOUNT_SK
+		dataType: string
+		sourceProviderType: nvarchar(32)
+		lineageTag: f105ec57-2507-4252-a1c9-13e985ee97a1
+		summarizeBy: none
+		sourceColumn: ACCOUNT_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCOUNT_ID
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(36)
+		lineageTag: e720311a-2225-4034-8f60-ca4062d09b29
+		summarizeBy: none
+		sourceColumn: ACCOUNT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MEMBER_SK
+		dataType: string
+		sourceProviderType: nvarchar(32)
+		lineageTag: 7acd34a0-105f-4611-a436-281908f7171c
+		summarizeBy: none
+		sourceColumn: MEMBER_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCOUNT_TYPE
+		dataType: string
+		sourceProviderType: nvarchar(20)
+		lineageTag: d2eb8804-038b-4ac4-91ca-7a711b13bd0f
+		summarizeBy: none
+		sourceColumn: ACCOUNT_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column BALANCE
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 8070da4a-5fc0-49a8-b3d1-99cda72939d3
+		summarizeBy: sum
+		sourceColumn: BALANCE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_ACCOUNTS = m
+		mode: directQuery
+		source =
+				let
+				    Source = Snowflake.Databases("TJFQSZG-VX46954.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0", Role="DATA_ANALYST"]),
+				    CREDIT_UNION_DB_Database = Source{[Name="CREDIT_UNION_DB",Kind="Database"]}[Data],
+				    ANALYTICS_Schema = CREDIT_UNION_DB_Database{[Name="ANALYTICS",Kind="Schema"]}[Data],
+				    DIM_ACCOUNTS_View = ANALYTICS_Schema{[Name="DIM_ACCOUNTS",Kind="View"]}[Data]
+				in
+				    DIM_ACCOUNTS_View
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

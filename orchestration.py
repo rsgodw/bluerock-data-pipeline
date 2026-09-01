@@ -6,6 +6,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from dagster import asset, AssetExecutionContext, Definitions
 from dagster_dbt import DbtCliResource
+from dagster_slack import make_slack_on_run_failure_sensor, SlackResource
 import snowflake.connector
 
 # Load environment variables from .env
@@ -21,6 +22,13 @@ dbt_resource = DbtCliResource(
     project_dir=str(ANALYTICS_DIR),
     profiles_dir=str(ANALYTICS_DIR),
     dbt_executable=DBT_EXECUTABLE
+)
+
+# Configure Slack observability resource and failure sensor
+slack_resource = SlackResource(token=os.getenv("SLACK_TOKEN", "dummy"))
+slack_failure_sensor = make_slack_on_run_failure_sensor(
+    channel="#data-pipeline-alerts",
+    slack_token=os.getenv("SLACK_TOKEN", "dummy")
 )
 
 
@@ -84,6 +92,8 @@ def run_dbt_models(context: AssetExecutionContext, dbt: DbtCliResource):
 defs = Definitions(
     assets=[ingest_raw_data, apply_pii_classification, run_dbt_models],
     resources={
-        "dbt": dbt_resource
-    }
+        "dbt": dbt_resource,
+        "slack": slack_resource
+    },
+    sensors=[slack_failure_sensor]
 )

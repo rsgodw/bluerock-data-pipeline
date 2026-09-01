@@ -11,3 +11,6 @@ analytics/dbt_packages/
 analytics/logs/
 .tmp_dagster_home*/
 .dagster/
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+**/.pbi/editorSettings.json

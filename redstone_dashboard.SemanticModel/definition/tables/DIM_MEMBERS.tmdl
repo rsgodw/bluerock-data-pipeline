@@ -1,0 +1,111 @@
+table DIM_MEMBERS
+	lineageTag: db4e5703-7abb-49ce-9330-0697143b8d9f
+
+	column MEMBER_SK
+		dataType: string
+		sourceProviderType: nvarchar(32)
+		lineageTag: 23ee35a4-f4d8-4a6b-a8d8-6a2a33cb83fd
+		summarizeBy: none
+		sourceColumn: MEMBER_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column MEMBER_ID
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(36)
+		lineageTag: c9a60f1e-94f8-4100-9dde-de468b336eac
+		summarizeBy: none
+		sourceColumn: MEMBER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FIRST_NAME
+		dataType: string
+		sourceProviderType: nvarchar(100)
+		lineageTag: a7ca51a8-1713-462d-a285-cabeec9c406a
+		summarizeBy: none
+		sourceColumn: FIRST_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_NAME
+		dataType: string
+		sourceProviderType: nvarchar(100)
+		lineageTag: c219d6ad-6ca0-4211-bb1a-25fefa2e0d1f
+		summarizeBy: none
+		sourceColumn: LAST_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column EMAIL
+		dataType: string
+		sourceProviderType: nvarchar(255)
+		lineageTag: 3ae1bc63-20b3-472c-9854-4a35fd2aab7c
+		summarizeBy: none
+		sourceColumn: EMAIL
+
+		annotation SummarizationSetBy = Automatic
+
+	column PHONE_NUMBER
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 13b46b52-2b36-4685-8c41-48beaf46be9e
+		summarizeBy: none
+		sourceColumn: PHONE_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column HAS_PHONE_NUMBER
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 0f5a15b6-515e-46ed-b7a0-3843469b2d76
+		summarizeBy: none
+		sourceColumn: HAS_PHONE_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column JOIN_DATE
+		dataType: dateTime
+		formatString: Long Date
+		sourceProviderType: date
+		lineageTag: a400a95f-3107-4e26-9e05-cf72a852a2aa
+		summarizeBy: none
+		sourceColumn: JOIN_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CITY
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 8f490244-997b-40d5-bb30-e394222741b5
+		summarizeBy: none
+		sourceColumn: CITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATE
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: 91c2932f-7929-44e1-8d9c-0617fbffd07e
+		summarizeBy: none
+		sourceColumn: STATE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_MEMBERS = m
+		mode: directQuery
+		source =
+				let
+				    Source = Snowflake.Databases("TJFQSZG-VX46954.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0", Role="DATA_ANALYST"]),
+				    CREDIT_UNION_DB_Database = Source{[Name="CREDIT_UNION_DB",Kind="Database"]}[Data],
+				    ANALYTICS_Schema = CREDIT_UNION_DB_Database{[Name="ANALYTICS",Kind="Schema"]}[Data],
+				    DIM_MEMBERS_View = ANALYTICS_Schema{[Name="DIM_MEMBERS",Kind="View"]}[Data]
+				in
+				    DIM_MEMBERS_View
+
+	annotation PBI_ResultType = Table
+

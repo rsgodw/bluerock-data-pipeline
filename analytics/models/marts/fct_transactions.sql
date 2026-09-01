@@ -1,3 +1,5 @@
+{{ config(materialized='table') }}
+
 with transactions as (
     select * from {{ ref('stg_transactions') }}
 ),
@@ -13,7 +15,9 @@ select
     t.account_id,
     {{ dbt_utils.generate_surrogate_key(['a.member_id']) }} as member_sk,
     a.member_id,
-    t.transaction_date,
+    to_varchar(t.transaction_date::DATE, 'YYYYMMDD')::NUMBER(8,0) as transaction_date_sk,
+    cast(t.transaction_date as date) as transaction_date,
+    t.transaction_date as transaction_timestamp,
     t.amount,
     t.transaction_type
 from transactions t

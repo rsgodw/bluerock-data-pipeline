@@ -1,0 +1,285 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "88a29ec3a417630cb442",
+  "position": {
+    "x": 960,
+    "y": 237.81597573306368,
+    "z": 5,
+    "height": 276.64307381193123,
+    "width": 960,
+    "tabOrder": 5
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_MEMBERS"
+                    }
+                  },
+                  "Property": "STATE"
+                }
+              },
+              "queryRef": "DIM_MEMBERS.STATE",
+              "nativeQueryRef": "STATE",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_MEMBERS"
+                    }
+                  },
+                  "Property": "CITY"
+                }
+              },
+              "queryRef": "DIM_MEMBERS.CITY",
+              "nativeQueryRef": "CITY",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_TRANSACTIONS"
+                    }
+                  },
+                  "Property": "Total Flagged Anomalies"
+                }
+              },
+              "queryRef": "FCT_TRANSACTIONS.Total Flagged Anomalies",
+              "nativeQueryRef": "Total Flagged Anomalies"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FCT_TRANSACTIONS"
+                  }
+                },
+                "Property": "Total Flagged Anomalies"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "DIM_MEMBERS.STATE"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_MEMBERS"
+                    }
+                  },
+                  "Property": "STATE"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DIM_MEMBERS.CITY"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_MEMBERS"
+                    }
+                  },
+                  "Property": "CITY"
+                }
+              }
+            ],
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "524.9483577258403D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DIM_MEMBERS.STATE"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "379.43184466275056D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FCT_TRANSACTIONS.Total Flagged Anomalies"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "dataBars": {
+              "positiveColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#f5c4af'"
+                      }
+                    }
+                  }
+                }
+              },
+              "negativeColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#70bbff'"
+                      }
+                    }
+                  }
+                }
+              },
+              "axisColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'foreground'"
+                      }
+                    }
+                  }
+                }
+              },
+              "reverseDirection": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "hideText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "totalMatchingOption": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FCT_TRANSACTIONS.Total Flagged Anomalies"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8ec10eedbc7a1bc5ef7b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_TRANSACTIONS"
+              }
+            },
+            "Property": "Total Flagged Anomalies"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9f3f5d6bf2e5b22ce42a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_MEMBERS"
+              }
+            },
+            "Property": "CITY"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d6c60e73ff0e6b0e2c6a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_MEMBERS"
+              }
+            },
+            "Property": "STATE"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

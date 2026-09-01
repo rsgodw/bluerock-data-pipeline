@@ -1,0 +1,13 @@
+relationship 3bb86018-971c-4da9-bf0c-6e6955a1d7f1
+	fromColumn: FCT_TRANSACTIONS.MEMBER_SK
+	toColumn: DIM_MEMBERS.MEMBER_SK
+
+relationship 8c52d431-7ee5-4b0d-9b57-69ef504b8b6a
+	fromColumn: FCT_TRANSACTIONS.ACCOUNT_SK
+	toColumn: DIM_ACCOUNTS.ACCOUNT_SK
+
+relationship 665d88db-91c2-edc0-6db0-054b79b5ae95
+	relyOnReferentialIntegrity
+	fromColumn: FCT_TRANSACTIONS.TRANSACTION_DATE_SK
+	toColumn: DIM_DATE.DATE_SK
+

@@ -1,0 +1,81 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "d33101d7aa4592728313",
+  "position": {
+    "x": 1211.4054600606673,
+    "y": 0,
+    "z": 6,
+    "height": 237.81597573306368,
+    "width": 708.59453993933266,
+    "tabOrder": 6
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_TRANSACTIONS"
+                    }
+                  },
+                  "Property": "Total Flagged Anomalies"
+                }
+              },
+              "queryRef": "FCT_TRANSACTIONS.Total Flagged Anomalies",
+              "nativeQueryRef": "Total Flagged Anomalies"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FCT_TRANSACTIONS"
+                  }
+                },
+                "Property": "Total Flagged Anomalies"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            },
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FCT_TRANSACTIONS.Total Flagged Anomalies"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

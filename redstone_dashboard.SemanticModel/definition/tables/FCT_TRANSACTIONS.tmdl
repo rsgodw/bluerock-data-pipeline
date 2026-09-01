@@ -1,0 +1,139 @@
+table FCT_TRANSACTIONS
+	lineageTag: a597f2bc-40e0-4283-9147-a70d40961c80
+
+	measure 'Total Spend' = SUM(FCT_TRANSACTIONS[AMOUNT])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: a7e8c3b4-1234-4567-89ab-cdef01234567
+
+	measure 'Average Transaction Value' = AVERAGE(FCT_TRANSACTIONS[AMOUNT])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: b8f9d4c5-2345-5678-9abc-def012345678
+
+	measure 'Total Flagged Anomalies' = CALCULATE(COUNTROWS(FCT_TRANSACTIONS), FCT_TRANSACTIONS[AMOUNT] > 2000)
+		formatString: #,0
+		lineageTag: c9a0e5d6-3456-6789-abcd-ef0123456789
+
+	column TRANSACTION_SK
+		dataType: string
+		sourceProviderType: nvarchar(32)
+		lineageTag: 1f0ce438-17a0-486a-aed7-fe85561760e2
+		summarizeBy: none
+		sourceColumn: TRANSACTION_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRANSACTION_ID
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(36)
+		lineageTag: a1161943-a9b8-4d90-a6c5-6c5ffb898270
+		summarizeBy: none
+		sourceColumn: TRANSACTION_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCOUNT_SK
+		dataType: string
+		sourceProviderType: nvarchar(32)
+		lineageTag: 372d19aa-542b-429d-a429-739198319185
+		summarizeBy: none
+		sourceColumn: ACCOUNT_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCOUNT_ID
+		dataType: string
+		sourceProviderType: nvarchar(36)
+		lineageTag: 94252eac-3e66-4b58-9e53-ac2bf961593a
+		summarizeBy: none
+		sourceColumn: ACCOUNT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MEMBER_SK
+		dataType: string
+		sourceProviderType: nvarchar(32)
+		lineageTag: 5f06984f-7c4f-4e20-8c0a-658c1c101b3e
+		summarizeBy: none
+		sourceColumn: MEMBER_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column MEMBER_ID
+		dataType: string
+		sourceProviderType: nvarchar(36)
+		lineageTag: 82886227-444c-4c3c-b156-419ccd8affe9
+		summarizeBy: none
+		sourceColumn: MEMBER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRANSACTION_DATE
+		dataType: dateTime
+		formatString: Long Date
+		sourceProviderType: date
+		lineageTag: fce6f764-e22d-4a5b-a613-7241d5b840fb
+		summarizeBy: none
+		sourceColumn: TRANSACTION_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column AMOUNT
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 5c4f4c2b-3a49-44a9-a36b-4f29597676bb
+		summarizeBy: sum
+		sourceColumn: AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TRANSACTION_TYPE
+		dataType: string
+		sourceProviderType: nvarchar(20)
+		lineageTag: c7c7dbcc-e4cb-4865-a5e8-ac510e3abae3
+		summarizeBy: none
+		sourceColumn: TRANSACTION_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRANSACTION_TIMESTAMP
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: f19e02ac-bbcb-4497-a7be-e3eddfcdcc32
+		summarizeBy: none
+		sourceColumn: TRANSACTION_TIMESTAMP
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRANSACTION_DATE_SK
+		dataType: int64
+		formatString: 0
+		sourceProviderType: decimal(8, 0)
+		lineageTag: 34219dd6-50dd-47e4-b9da-1971296302f3
+		summarizeBy: none
+		sourceColumn: TRANSACTION_DATE_SK
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FCT_TRANSACTIONS = m
+		mode: directQuery
+		source =
+				let
+				    Source = Snowflake.Databases("TJFQSZG-VX46954.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0", Role="DATA_ANALYST"]),
+				    CREDIT_UNION_DB_Database = Source{[Name="CREDIT_UNION_DB",Kind="Database"]}[Data],
+				    ANALYTICS_Schema = CREDIT_UNION_DB_Database{[Name="ANALYTICS",Kind="Schema"]}[Data],
+				    FCT_TRANSACTIONS_View = ANALYTICS_Schema{[Name="FCT_TRANSACTIONS",Kind="View"]}[Data]
+				in
+				    FCT_TRANSACTIONS_View
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

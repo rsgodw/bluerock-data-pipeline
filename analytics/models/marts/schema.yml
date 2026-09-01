@@ -9,6 +9,10 @@ models:
         tests:
           - unique
           - not_null
+      - name: city
+        description: "City of residence for the member."
+      - name: state
+        description: "Two-letter US state code of residence for the member."
 
   - name: dim_accounts
     description: "Dimension table for financial accounts."
@@ -18,6 +22,11 @@ models:
         tests:
           - unique
           - not_null
+      - name: account_type
+        description: "Type of bank account."
+        tests:
+          - accepted_values:
+              values: ['Checking', 'Savings']
 
   - name: fct_transactions
     description: "Fact table for credit union transactions."
@@ -27,3 +36,22 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: dim_date
+    description: "Kimball Date dimension generated using Snowflake date generator."
+    columns:
+      - name: date_sk
+        description: "Surrogate key in YYYYMMDD integer format."
+        tests:
+          - unique
+          - not_null
+      - name: full_date
+        description: "Calendar date."
+      - name: year
+        description: "Calendar year."
+      - name: month
+        description: "Calendar month (1-12)."
+      - name: year_month
+        description: "Year and month in YYYY-MM format."
+      - name: day_of_week
+        description: "Three-letter abbreviation of the day of the week."

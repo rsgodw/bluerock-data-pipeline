@@ -10,6 +10,8 @@ renamed as (
         email,
         phone_number,
         has_phone_number,
+        city,
+        state,
         join_date
     from source
 )

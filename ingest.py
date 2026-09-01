@@ -22,15 +22,12 @@ logging.basicConfig(
 logger = logging.getLogger("ingest")
 
 
-def generate_synthetic_data():
-    """Generates synthetic banking data in 3NF (Members, Accounts, Transactions)."""
-    fake = Faker()
-    
-    logger.info("Generating synthetic data using Faker (seed=42)...")
-    
-    # 1. Members: 100 records
+def generate_members(fake=None, num_records=100):
+    """Generates synthetic member records with US cities and states."""
+    if fake is None:
+        fake = Faker()
     members = []
-    for _ in range(100):
+    for _ in range(num_records):
         has_phone = random.random() < 0.85
         phone = fake.phone_number() if has_phone else None
         join_date = fake.date_between(start_date="-5y", end_date="today")
@@ -41,9 +38,21 @@ def generate_synthetic_data():
             "EMAIL": fake.email(),
             "PHONE_NUMBER": phone,
             "HAS_PHONE_NUMBER": bool(has_phone),
+            "CITY": fake.city(),
+            "STATE": fake.state_abbr(),
             "JOIN_DATE": join_date.strftime("%Y-%m-%d")
         })
-    df_members = pd.DataFrame(members)
+    return pd.DataFrame(members)
+
+
+def generate_synthetic_data():
+    """Generates synthetic banking data in 3NF (Members, Accounts, Transactions)."""
+    fake = Faker()
+    
+    logger.info("Generating synthetic data using Faker (seed=42)...")
+    
+    # 1. Members: 100 records
+    df_members = generate_members(fake, num_records=100)
     logger.info(f"Generated {len(df_members)} member records.")
     
     # 2. Accounts: 200 records
@@ -115,8 +124,16 @@ def setup_and_truncate_tables(conn):
             EMAIL VARCHAR(255),
             PHONE_NUMBER VARCHAR(50),
             HAS_PHONE_NUMBER BOOLEAN,
+            CITY VARCHAR,
+            STATE VARCHAR,
             JOIN_DATE DATE
         );
+        """,
+        """
+        ALTER TABLE IF EXISTS CREDIT_UNION_DB.RAW.MEMBERS ADD COLUMN IF NOT EXISTS CITY VARCHAR;
+        """,
+        """
+        ALTER TABLE IF EXISTS CREDIT_UNION_DB.RAW.MEMBERS ADD COLUMN IF NOT EXISTS STATE VARCHAR;
         """,
         """
         CREATE TABLE IF NOT EXISTS CREDIT_UNION_DB.RAW.ACCOUNTS (
