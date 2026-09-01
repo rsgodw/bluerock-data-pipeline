@@ -22,6 +22,11 @@ table DIM_DATE
 		summarizeBy: none
 		sourceColumn: FULL_DATE
 
+		variation Variation
+			isDefault
+			relationship: e577416c-aabb-438e-8c19-78a68fa469b3
+			defaultHierarchy: LocalDateTable_2ccd3a82-59e1-4f19-91e3-675f4171661f.'Date Hierarchy'
+
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
@@ -30,7 +35,7 @@ table DIM_DATE
 		dataType: double
 		sourceProviderType: decimal(4, 0)
 		lineageTag: 0e610154-ed16-46d1-9973-11f877992157
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: YEAR
 
 		annotation SummarizationSetBy = Automatic
@@ -41,7 +46,7 @@ table DIM_DATE
 		dataType: double
 		sourceProviderType: decimal(2, 0)
 		lineageTag: d1f6634a-9f1d-4050-9ea3-c653ba98aa95
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: MONTH
 
 		annotation SummarizationSetBy = Automatic
@@ -67,7 +72,7 @@ table DIM_DATE
 		annotation SummarizationSetBy = Automatic
 
 	partition DIM_DATE = m
-		mode: directQuery
+		mode: import
 		source =
 				let
 				    Source = Snowflake.Databases("TJFQSZG-VX46954.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0"]),

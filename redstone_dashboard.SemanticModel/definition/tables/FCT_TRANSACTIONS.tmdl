@@ -76,6 +76,11 @@ table FCT_TRANSACTIONS
 		summarizeBy: none
 		sourceColumn: TRANSACTION_DATE
 
+		variation Variation
+			isDefault
+			relationship: 697058b9-bfcc-488a-b0a9-565868b50e4e
+			defaultHierarchy: LocalDateTable_3498fe51-13d4-4e49-ab4f-f83a275de62f.'Date Hierarchy'
+
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
@@ -108,6 +113,11 @@ table FCT_TRANSACTIONS
 		summarizeBy: none
 		sourceColumn: TRANSACTION_TIMESTAMP
 
+		variation Variation
+			isDefault
+			relationship: 68274fd9-88b6-4bae-9a5a-3edd08d6b289
+			defaultHierarchy: LocalDateTable_1cebca23-a916-4a27-a823-d6dcec6ac858.'Date Hierarchy'
+
 		annotation SummarizationSetBy = Automatic
 
 	column TRANSACTION_DATE_SK
@@ -123,7 +133,7 @@ table FCT_TRANSACTIONS
 		annotation SummarizationSetBy = Automatic
 
 	partition FCT_TRANSACTIONS = m
-		mode: directQuery
+		mode: import
 		source =
 				let
 				    Source = Snowflake.Databases("TJFQSZG-VX46954.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0", Role="DATA_ANALYST"]),

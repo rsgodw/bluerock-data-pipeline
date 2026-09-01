@@ -50,7 +50,7 @@ table DIM_ACCOUNTS
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	partition DIM_ACCOUNTS = m
-		mode: directQuery
+		mode: import
 		source =
 				let
 				    Source = Snowflake.Databases("TJFQSZG-VX46954.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0", Role="DATA_ANALYST"]),

@@ -3,10 +3,10 @@
   "name": "3c3b89922eff90569a99",
   "position": {
     "x": 0,
-    "y": 525,
+    "y": 525.25597269624575,
     "z": 8,
-    "height": 277,
-    "width": 960,
+    "height": 554.74402730375425,
+    "width": 1920.4095563139931,
     "tabOrder": 8
   },
   "visual": {
@@ -55,19 +55,18 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "FCT_TRANSACTIONS"
+                    "Entity": "DIM_DATE"
                   }
                 },
-                "Property": "Total Spend"
+                "Property": "YEAR_MONTH"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
     },
     "drillFilterOtherVisuals": true

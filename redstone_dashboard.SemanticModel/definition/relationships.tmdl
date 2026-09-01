@@ -11,3 +11,23 @@ relationship 665d88db-91c2-edc0-6db0-054b79b5ae95
 	fromColumn: FCT_TRANSACTIONS.TRANSACTION_DATE_SK
 	toColumn: DIM_DATE.DATE_SK
 
+relationship 697058b9-bfcc-488a-b0a9-565868b50e4e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FCT_TRANSACTIONS.TRANSACTION_DATE
+	toColumn: LocalDateTable_3498fe51-13d4-4e49-ab4f-f83a275de62f.Date
+
+relationship 68274fd9-88b6-4bae-9a5a-3edd08d6b289
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FCT_TRANSACTIONS.TRANSACTION_TIMESTAMP
+	toColumn: LocalDateTable_1cebca23-a916-4a27-a823-d6dcec6ac858.Date
+
+relationship e1858cd9-e413-40cb-921e-48daac3f6b65
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_MEMBERS.JOIN_DATE
+	toColumn: LocalDateTable_959d93a4-2a14-4f34-9214-e5562bf72c3f.Date
+
+relationship e577416c-aabb-438e-8c19-78a68fa469b3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_DATE.FULL_DATE
+	toColumn: LocalDateTable_2ccd3a82-59e1-4f19-91e3-675f4171661f.Date
+

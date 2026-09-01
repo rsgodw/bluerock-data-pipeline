@@ -74,6 +74,11 @@ table DIM_MEMBERS
 		summarizeBy: none
 		sourceColumn: JOIN_DATE
 
+		variation Variation
+			isDefault
+			relationship: e1858cd9-e413-40cb-921e-48daac3f6b65
+			defaultHierarchy: LocalDateTable_959d93a4-2a14-4f34-9214-e5562bf72c3f.'Date Hierarchy'
+
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
@@ -97,7 +102,7 @@ table DIM_MEMBERS
 		annotation SummarizationSetBy = Automatic
 
 	partition DIM_MEMBERS = m
-		mode: directQuery
+		mode: import
 		source =
 				let
 				    Source = Snowflake.Databases("TJFQSZG-VX46954.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0", Role="DATA_ANALYST"]),

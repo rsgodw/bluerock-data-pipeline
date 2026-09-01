@@ -17,6 +17,11 @@ ref table DIM_ACCOUNTS
 ref table FCT_TRANSACTIONS
 ref table DIM_MEMBERS
 ref table DIM_DATE
+ref table DateTableTemplate_cdf0aa1b-e653-431a-bd0f-257f761fe4d0
+ref table LocalDateTable_3498fe51-13d4-4e49-ab4f-f83a275de62f
+ref table LocalDateTable_1cebca23-a916-4a27-a823-d6dcec6ac858
+ref table LocalDateTable_959d93a4-2a14-4f34-9214-e5562bf72c3f
+ref table LocalDateTable_2ccd3a82-59e1-4f19-91e3-675f4171661f
 
 ref cultureInfo en-US
 
