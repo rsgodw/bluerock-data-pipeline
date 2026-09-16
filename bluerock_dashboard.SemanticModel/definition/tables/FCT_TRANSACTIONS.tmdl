@@ -87,14 +87,13 @@ table FCT_TRANSACTIONS
 
 	column AMOUNT
 		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
 		sourceProviderType: double
 		lineageTag: 5c4f4c2b-3a49-44a9-a36b-4f29597676bb
 		summarizeBy: sum
 		sourceColumn: AMOUNT
 
 		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column TRANSACTION_TYPE
 		dataType: string

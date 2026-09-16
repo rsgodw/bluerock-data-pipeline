@@ -2,7 +2,7 @@
   "version": "4.0",
   "datasetReference": {
     "byPath": {
-      "path": "../redstone_dashboard.SemanticModel"
+      "path": "../bluerock_dashboard.SemanticModel"
     }
   }
 }

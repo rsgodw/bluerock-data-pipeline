@@ -15,6 +15,6 @@ Whenever you write code, immediately write a terminal command to test it, read t
 
 Power BI & Semantic Modeling Rules:
 1. Power BI projects are stored in the `.pbip` format using TMDL (Tabular Model Definition Language).
-2. When asked to create relationships or DAX measures, do NOT write a python script. Edit the `.tmdl` files directly inside the "C:\Users\User\Projects\redstone-pipeline\redstone_dashboard.SemanticModel" directory.
+2. When asked to create relationships or DAX measures, do NOT write a python script. Edit the `.tmdl` files directly inside the "bluerock_dashboard.SemanticModel" directory.
 3. Use the Tabular Editor CLI (`TabularEditor.exe`) to validate the TMDL code.
-4. Use `pbi-tools compile` to package the text files if a physical `.pbix` is needed.
+4. Use `pbi-tools compile` to package the text files if a physical `.pbix` is needed.

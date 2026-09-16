@@ -1,5 +1,8 @@
 .venv/
 .env
+profiles.yml
+analytics/profiles.yml
+**/profiles.yml
 __pycache__/
 target/
 dbt_packages/

@@ -1,0 +1,153 @@
+{
+  "classification_result": {
+    "CITY": {
+      "alternates": []
+    },
+    "EMAIL": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 1,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "EMAIL",
+        "tags": [
+          {
+            "tag_applied": true,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "EMAIL"
+          },
+          {
+            "tag_applied": true,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 1
+    },
+    "FIRST_NAME": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.99,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "NAME",
+        "tags": [
+          {
+            "tag_applied": true,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "NAME"
+          },
+          {
+            "tag_applied": true,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 1
+    },
+    "HAS_PHONE_NUMBER": {
+      "alternates": []
+    },
+    "JOIN_DATE": {
+      "alternates": []
+    },
+    "LAST_NAME": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 1,
+        "details": [],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "NAME",
+        "tags": [
+          {
+            "tag_applied": true,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "NAME"
+          },
+          {
+            "tag_applied": true,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 1
+    },
+    "MEMBER_ID": {
+      "alternates": []
+    },
+    "PHONE_NUMBER": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "MEDIUM",
+        "coverage": 0.41,
+        "details": [
+          {
+            "coverage": 0.02,
+            "semantic_category": "JP_PHONE_NUMBER"
+          },
+          {
+            "coverage": 0.06,
+            "semantic_category": "CA_PHONE_NUMBER"
+          },
+          {
+            "coverage": 0.17,
+            "semantic_category": "UK_PHONE_NUMBER"
+          },
+          {
+            "coverage": 0.41,
+            "semantic_category": "US_PHONE_NUMBER"
+          }
+        ],
+        "privacy_category": "IDENTIFIER",
+        "semantic_category": "PHONE_NUMBER",
+        "tags": [
+          {
+            "tag_applied": true,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "PHONE_NUMBER"
+          },
+          {
+            "tag_applied": true,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 0.86
+    },
+    "STATE": {
+      "alternates": [],
+      "recommendation": {
+        "confidence": "HIGH",
+        "coverage": 0.97,
+        "details": [
+          {
+            "coverage": 0.97,
+            "semantic_category": "US_STATE_OR_TERRITORY"
+          }
+        ],
+        "privacy_category": "QUASI_IDENTIFIER",
+        "semantic_category": "ADMINISTRATIVE_AREA_1",
+        "tags": [
+          {
+            "tag_applied": true,
+            "tag_name": "snowflake.core.semantic_category",
+            "tag_value": "ADMINISTRATIVE_AREA_1"
+          },
+          {
+            "tag_applied": true,
+            "tag_name": "snowflake.core.privacy_category",
+            "tag_value": "QUASI_IDENTIFIER"
+          }
+        ]
+      },
+      "valid_value_ratio": 1
+    }
+  }
+}
