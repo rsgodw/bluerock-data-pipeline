@@ -12,7 +12,7 @@ An enterprise-grade, modern data stack (MDS) financial data platform built for a
 
 | Service | Link | Description |
 | :--- | :--- | :--- |
-| **Streamlit Analytics App** | [**Launch Live Dashboard**](https://bluerock-data-pipeline.streamlit.app/) *(Placeholder)* | Interactive executive dashboard featuring KPI cards, 'Total Spend by YEAR_MONTH' trendlines, and anomaly detection. |
+| **Streamlit Analytics App** | [**Launch Live Dashboard ↗**](https://bluerock-data-pipeline.streamlit.app/) | Interactive executive dashboard featuring KPI cards, 'Total Spend by YEAR_MONTH' trendlines, and anomaly detection. |
 | **Local Dashboard** | `streamlit run streamlit_app.py` | Run locally using the included high-performance Parquet snapshot. |
 
 > [!NOTE]
