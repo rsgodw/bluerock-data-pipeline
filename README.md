@@ -207,7 +207,8 @@ streamlit run streamlit_app.py
 
 ## 👤 Author
 
-**Robert Godwin**  
+**[Rodney Godwin](https://www.linkedin.com/in/rodney-godwin/)**  
+- LinkedIn: [linkedin.com/in/rodney-godwin](https://www.linkedin.com/in/rodney-godwin/)  
 - GitHub: [@rsgodw](https://github.com/rsgodw)  
 - Repository: [bluerock-data-pipeline](https://github.com/rsgodw/bluerock-data-pipeline)
 

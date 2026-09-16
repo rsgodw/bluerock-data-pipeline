@@ -85,51 +85,78 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Sidebar Filters
+# ----------------------------------------------------------------------
+# Sidebar Filters with Modern UX
+# ----------------------------------------------------------------------
 st.sidebar.header("🔍 Filter Analytics Mart")
 
-# Year-Month Filter
+# 1. Year-Month Filter: Range Slider
 all_months = sorted(df["YEAR_MONTH"].unique().tolist())
-selected_months = st.sidebar.multiselect(
-    "Select Year-Month",
-    options=all_months,
-    default=all_months
-)
+if len(all_months) > 1:
+    start_month, end_month = st.sidebar.select_slider(
+        "📅 Date Range (Year-Month)",
+        options=all_months,
+        value=(all_months[0], all_months[-1])
+    )
+else:
+    start_month = end_month = all_months[0]
+    st.sidebar.info(f"Date: {start_month}")
 
-# Account Type Filter
+st.sidebar.write("---")
+
+# 2. Account Type Filter: Interactive Pills
 all_acc_types = sorted(df["ACCOUNT_TYPE"].dropna().unique().tolist())
-selected_acc_types = st.sidebar.multiselect(
-    "Account Type",
+selected_acc_types = st.sidebar.pills(
+    "🏦 Account Type",
     options=all_acc_types,
-    default=all_acc_types
+    default=all_acc_types,
+    selection_mode="multi"
 )
 
-# Transaction Type Filter
+# 3. Transaction Type Filter: Interactive Pills
 all_tx_types = sorted(df["TRANSACTION_TYPE"].dropna().unique().tolist())
-selected_tx_types = st.sidebar.multiselect(
-    "Transaction Type",
+selected_tx_types = st.sidebar.pills(
+    "💸 Transaction Type",
     options=all_tx_types,
-    default=all_tx_types
+    default=all_tx_types,
+    selection_mode="multi"
 )
 
-# State Filter
+st.sidebar.write("---")
+
+# 4. Member State Filter: Multi-select (empty = All States)
 all_states = sorted(df["STATE"].dropna().unique().tolist())
 selected_states = st.sidebar.multiselect(
-    "Member State",
+    "🗺️ Member State",
     options=all_states,
-    default=all_states
+    default=[],
+    placeholder="All States (or select specific)"
 )
 
-# Apply Filters
-filtered_df = df[
-    (df["YEAR_MONTH"].isin(selected_months)) &
-    (df["ACCOUNT_TYPE"].isin(selected_acc_types)) &
-    (df["TRANSACTION_TYPE"].isin(selected_tx_types)) &
-    (df["STATE"].isin(selected_states))
-]
+# ----------------------------------------------------------------------
+# Pandas Filtering Logic
+# ----------------------------------------------------------------------
+# Filter by Year-Month range
+filtered_df = df[(df["YEAR_MONTH"] >= start_month) & (df["YEAR_MONTH"] <= end_month)]
+
+# Filter by Account Types (if pills selected)
+if selected_acc_types:
+    filtered_df = filtered_df[filtered_df["ACCOUNT_TYPE"].isin(selected_acc_types)]
+else:
+    filtered_df = filtered_df.iloc[0:0]
+
+# Filter by Transaction Types (if pills selected)
+if selected_tx_types:
+    filtered_df = filtered_df[filtered_df["TRANSACTION_TYPE"].isin(selected_tx_types)]
+else:
+    filtered_df = filtered_df.iloc[0:0]
+
+# Filter by Member States (empty list = All States)
+if selected_states:
+    filtered_df = filtered_df[filtered_df["STATE"].isin(selected_states)]
 
 if filtered_df.empty:
-    st.warning("No transactions match the selected filters. Please adjust your filter criteria.")
+    st.warning("⚠️ No transactions match the selected filters. Please select at least one Account Type, Transaction Type, or expand the date range.")
     st.stop()
 
 # ----------------------------------------------------------------------
